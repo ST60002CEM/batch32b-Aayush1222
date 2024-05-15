@@ -8,7 +8,6 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   final _formKey = GlobalKey<FormState>();
-  bool _agreeToTerms = false;
 
   @override
   Widget build(BuildContext context) {

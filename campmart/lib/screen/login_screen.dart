@@ -12,6 +12,7 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   String _email = '';
   String _password = '';
+  bool _obscureText = true; // To toggle password visibility
 
   @override
   Widget build(BuildContext context) {
@@ -84,13 +85,26 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       const SizedBox(height: 16.0),
                       TextFormField(
-                        obscureText: true,
+                        obscureText: _obscureText,
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
                           labelText: 'Password',
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30.0),
+                          ),
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                _obscureText = !_obscureText;
+                              });
+                            },
+                            icon: Icon(
+                              _obscureText
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              color: Colors.grey,
+                            ),
                           ),
                         ),
                         validator: (value) {
@@ -134,30 +148,68 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       const SizedBox(height: 24.0),
-                      ElevatedButton(
-                        onPressed: () {
-                          // Handle Google sign-in
-                        },
-                        style: ElevatedButton.styleFrom(
-                          foregroundColor: Colors.black,
-                          backgroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30.0),
+                      Text(
+                        '------or continue with------',
+                        style: TextStyle(color: Colors.white70),
+                      ),
+                      const SizedBox(height: 8.0),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              // Handle Facebook sign-in
+                            },
+                            style: ElevatedButton.styleFrom(
+                              foregroundColor: Color.fromARGB(255, 6, 6, 6),
+                              backgroundColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0),
+                              ),
+                              padding: const EdgeInsets.all(12.0),
+                            ),
+                            child: Image.asset(
+                              'assets/images/facebook_logo.png',
+                              height: 24.0,
+                            ),
                           ),
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 12.0, horizontal: 24.0),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Image.asset(
+                          SizedBox(width: 12.0),
+                          ElevatedButton(
+                            onPressed: () {
+                              // Handle Apple sign-in
+                            },
+                            style: ElevatedButton.styleFrom(
+                              foregroundColor: Colors.black,
+                              backgroundColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0),
+                              ),
+                              padding: const EdgeInsets.all(12.0),
+                            ),
+                            child: Image.asset(
+                              'assets/images/apple_logo.png',
+                              height: 24.0,
+                            ),
+                          ),
+                          SizedBox(width: 12.0),
+                          ElevatedButton(
+                            onPressed: () {
+                              // Handle Apple sign-in
+                            },
+                            style: ElevatedButton.styleFrom(
+                              foregroundColor: Colors.black,
+                              backgroundColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0),
+                              ),
+                              padding: const EdgeInsets.all(12.0),
+                            ),
+                            child: Image.asset(
                               'assets/images/google_logo.png',
                               height: 24.0,
                             ),
-                            //const SizedBox(width: 8.0),
-                            // const Text('Continue with Google'),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                       const SizedBox(height: 24.0),
                       ElevatedButton(
@@ -178,7 +230,7 @@ class _LoginPageState extends State<LoginPage> {
                               vertical: 12.0, horizontal: 24.0),
                         ),
                         child: const Text(
-                          'Register',
+                          'Sign up',
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
