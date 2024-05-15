@@ -1,7 +1,6 @@
-import 'package:campmart/screen/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
-import '../screen/login_screen.dart';
+import '../screen/login_screen.dart'; // Ensure the path is correct
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -13,7 +12,8 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(
-      Duration(seconds: 2),
+      const Duration(
+          seconds: 2), // Increased duration to give a better splash effect
       () => Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => LoginPage()),
@@ -24,17 +24,20 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(
-          255, 44, 44, 61), // Set the background color to dark purple
+      backgroundColor: const Color.fromARGB(255, 44, 44, 61),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/images/google_logo.png'),
-            SizedBox(height: 20),
-            CircularProgressIndicator(
-              color: Colors
-                  .white, // Set the color of the CircularProgressIndicator to white
+            // Adjusted size for better appearance
+            Image.asset(
+              'assets/images/app_logo.ico', // Ensure the image format is appropriate
+              width: 150, // Width of the logo
+              height: 150, // Height of the logo
+            ),
+            const SizedBox(height: 20),
+            const CircularProgressIndicator(
+              color: Colors.white,
             ),
           ],
         ),

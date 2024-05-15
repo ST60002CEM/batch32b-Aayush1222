@@ -30,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
           Container(
             width: double.infinity,
             height: double.infinity,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               gradient: LinearGradient(
                 colors: [
                   Color.fromARGB(255, 44, 44, 61),
@@ -58,12 +58,12 @@ class _LoginPageState extends State<LoginPage> {
                           color: Colors.white,
                         ),
                       ),
-                      SizedBox(height: 8.0),
+                      const SizedBox(height: 8.0),
                       const Text(
                         'Please login to continue',
                         style: TextStyle(color: Colors.white70),
                       ),
-                      SizedBox(height: 24.0),
+                      const SizedBox(height: 24.0),
                       TextFormField(
                         decoration: InputDecoration(
                           filled: true,
@@ -101,8 +101,8 @@ class _LoginPageState extends State<LoginPage> {
                             },
                             icon: Icon(
                               _obscureText
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
                               color: Colors.grey,
                             ),
                           ),
@@ -148,11 +148,11 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       const SizedBox(height: 24.0),
-                      Text(
+                      const Text(
                         '------or continue with------',
                         style: TextStyle(color: Colors.white70),
                       ),
-                      const SizedBox(height: 8.0),
+                      const SizedBox(height: 20.0),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -173,7 +173,7 @@ class _LoginPageState extends State<LoginPage> {
                               height: 24.0,
                             ),
                           ),
-                          SizedBox(width: 12.0),
+                          const SizedBox(width: 12.0),
                           ElevatedButton(
                             onPressed: () {
                               // Handle Apple sign-in
@@ -191,7 +191,7 @@ class _LoginPageState extends State<LoginPage> {
                               height: 24.0,
                             ),
                           ),
-                          SizedBox(width: 12.0),
+                          const SizedBox(width: 12.0),
                           ElevatedButton(
                             onPressed: () {
                               // Handle Apple sign-in

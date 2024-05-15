@@ -1,5 +1,5 @@
-import '../screen/login_screen.dart';
 import 'package:flutter/material.dart';
+import '../screen/login_screen.dart'; // Adjust the path as needed
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -8,6 +8,8 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   final _formKey = GlobalKey<FormState>();
+  bool _obscurePassword = true;
+  bool _obscureConfirmPassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -17,13 +19,13 @@ class _SignUpPageState extends State<SignUpPage> {
           'CampMart',
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Color.fromARGB(255, 44, 44, 61),
+        backgroundColor: const Color.fromARGB(255, 44, 44, 61),
         elevation: 0,
       ),
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
               Color.fromARGB(255, 44, 44, 61),
@@ -84,13 +86,26 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 const SizedBox(height: 20.0),
                 TextFormField(
-                  obscureText: true,
+                  obscureText: _obscurePassword,
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
                     hintText: 'Password',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30.0),
+                    ),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _obscurePassword
+                            ? Icons.visibility_off
+                            : Icons.visibility,
+                        color: Colors.grey,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _obscurePassword = !_obscurePassword;
+                        });
+                      },
                     ),
                   ),
                   validator: (value) {
@@ -102,13 +117,26 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 const SizedBox(height: 20.0),
                 TextFormField(
-                  obscureText: true,
+                  obscureText: _obscureConfirmPassword,
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
                     hintText: 'Confirm Password',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30.0),
+                    ),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _obscureConfirmPassword
+                            ? Icons.visibility_off
+                            : Icons.visibility,
+                        color: Colors.grey,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _obscureConfirmPassword = !_obscureConfirmPassword;
+                        });
+                      },
                     ),
                   ),
                   validator: (value) {
@@ -152,9 +180,12 @@ class _SignUpPageState extends State<SignUpPage> {
                       style: TextStyle(color: Colors.white70),
                     ),
                     TextButton(
-                      child: const Text('Login'),
+                      child: const Text(
+                        'Login',
+                        style: TextStyle(color: Colors.white70),
+                      ),
                       onPressed: () {
-                        Navigator.push(
+                        Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(builder: (context) => LoginPage()),
                         );
