@@ -13,7 +13,7 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('HandyHelper'),
+        title: Text('CampMart'),
         backgroundColor: Colors.green,
       ),
       body: SingleChildScrollView(
