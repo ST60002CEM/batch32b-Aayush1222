@@ -23,11 +23,20 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
+      backgroundColor: Color.fromARGB(
+          255, 44, 44, 61), // Set the background color to dark purple
       body: Center(
-        child: Text(
-          "Welcome Aayushman",
-          style: TextStyle(fontSize: 24.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset('assets/images/google_logo.png'),
+            SizedBox(height: 20),
+            CircularProgressIndicator(
+              color: Colors
+                  .white, // Set the color of the CircularProgressIndicator to white
+            ),
+          ],
         ),
       ),
     );
