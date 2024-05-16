@@ -46,17 +46,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
       body: Column(
         children: [
-          Flexible(
-            flex: 1,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Search',
-                  prefixIcon: Icon(Icons.search),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30.0),
-                  ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: 'Search',
+                prefixIcon: Icon(Icons.search),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(30.0),
                 ),
               ),
             ),
@@ -72,13 +69,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ],
             ),
           ),
-          Flexible(
-            flex: 3,
+          Expanded(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: GridView.count(
                 crossAxisCount: 2,
-                childAspectRatio: 0.8,
+                childAspectRatio: 0.75,
                 crossAxisSpacing: 8.0,
                 mainAxisSpacing: 8.0,
                 children: [
@@ -206,7 +202,7 @@ class ItemCard extends StatelessWidget {
               ),
               child: Image.asset(
                 image,
-                height: 150,
+                height: 200, // Increased height for better visibility
                 width: double.infinity,
                 fit: BoxFit.cover,
               ),
