@@ -1,39 +1,44 @@
 import 'package:flutter/material.dart';
 
-class DashboardScreen extends StatelessWidget {
+class DashboardScreen extends StatefulWidget {
+  @override
+  _DashboardScreenState createState() => _DashboardScreenState();
+}
+
+class _DashboardScreenState extends State<DashboardScreen> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false, // To remove the default back button
-        backgroundColor: Color.fromARGB(255, 255, 255, 255),
+        backgroundColor: Colors.white,
+        elevation: 0,
         title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            // Dropdown menu on the top left
-            PopupMenuButton(
-              itemBuilder: (BuildContext context) {
-                return [
-                  PopupMenuItem(
-                    child: Text('Option 1'),
-                    value: 'Option 1',
-                  ),
-                  PopupMenuItem(
-                    child: Text('Option 2'),
-                    value: 'Option 2',
-                  ),
-                  PopupMenuItem(
-                    child: Text('Option 3'),
-                    value: 'Option 3',
-                  ),
-                ];
+            IconButton(
+              icon: Icon(Icons.menu),
+              onPressed: () {
+                // Handle menu button tap
+                print('Menu button tapped');
               },
             ),
-            Spacer(), // To push the profile icon to the right
-            // Profile icon on the top right
+            Text(
+              'CampMart',
+              style: TextStyle(color: Colors.black),
+            ),
             IconButton(
               icon: Icon(Icons.person),
               onPressed: () {
-                // Add functionality to open profile page
+                // Handle profile button tap
+                print('Profile button tapped');
               },
             ),
           ],
@@ -77,10 +82,42 @@ class DashboardScreen extends StatelessWidget {
                 crossAxisSpacing: 8.0,
                 mainAxisSpacing: 8.0,
                 children: [
-                  ItemCard(title: 'Acer Laptop', price: '\$450.9'),
-                  ItemCard(title: "You're Not So Smart", price: '\$37.9'),
-                  ItemCard(title: 'Charger', price: '\$19.9'),
-                  ItemCard(title: 'Phone Case', price: '\$12.9'),
+                  ItemCard(
+                    image: 'assets/images/laptop.png',
+                    title: 'Acer Laptop',
+                    price: '\$450.9',
+                    onTap: () {
+                      // Handle item tap
+                      print('Acer Laptop tapped');
+                    },
+                  ),
+                  ItemCard(
+                    image: 'assets/images/book.png',
+                    title: "You're Not So Smart",
+                    price: '\$37.9',
+                    onTap: () {
+                      // Handle item tap
+                      print("You're Not So Smart tapped");
+                    },
+                  ),
+                  ItemCard(
+                    image: 'assets/images/charger.png',
+                    title: 'Charger',
+                    price: '\$19.9',
+                    onTap: () {
+                      // Handle item tap
+                      print('Charger tapped');
+                    },
+                  ),
+                  ItemCard(
+                    image: 'assets/images/table.png',
+                    title: 'Phone Case',
+                    price: '\$12.9',
+                    onTap: () {
+                      // Handle item tap
+                      print('Phone Case tapped');
+                    },
+                  ),
                 ],
               ),
             ),
@@ -91,13 +128,30 @@ class DashboardScreen extends StatelessWidget {
         backgroundColor: Color.fromARGB(255, 44, 44, 61),
         selectedItemColor: Color.fromARGB(255, 67, 62, 62),
         unselectedItemColor: Color.fromARGB(179, 28, 27, 27),
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        type: BottomNavigationBarType.shifting,
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart), label: 'Cart'),
+            icon: Icon(Icons.home),
+            label: 'Home',
+            backgroundColor: Color.fromARGB(255, 255, 255, 255),
+          ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.favorite), label: 'Favorites'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+            icon: Icon(Icons.shopping_cart),
+            label: 'Cart',
+            backgroundColor: Color.fromARGB(255, 255, 255, 255),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite),
+            label: 'Favorites',
+            backgroundColor: Color.fromARGB(255, 255, 255, 255),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+            backgroundColor: Color.fromARGB(255, 255, 255, 255),
+          ),
         ],
       ),
     );
@@ -114,47 +168,70 @@ class DashboardScreen extends StatelessWidget {
       ),
       child: Text(
         text,
-        style: TextStyle(color: Colors.white), // Set text color to white
+        style: TextStyle(color: Colors.white),
       ),
     );
   }
 }
 
 class ItemCard extends StatelessWidget {
+  final String image;
   final String title;
   final String price;
+  final VoidCallback? onTap;
 
-  ItemCard({required this.title, required this.price});
+  ItemCard({
+    required this.image,
+    required this.title,
+    required this.price,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15.0),
-      ),
-      elevation: 5,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
+    return GestureDetector(
+      onTap: onTap,
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15.0),
+        ),
+        elevation: 5,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(
-              child: Center(
-                child: Text(
-                  title,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16.0,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
+            ClipRRect(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(15.0),
+                topRight: Radius.circular(15.0),
+              ),
+              child: Image.asset(
+                image,
+                height: 150,
+                width: double.infinity,
+                fit: BoxFit.cover,
               ),
             ),
-            Text(
-              price,
-              style: TextStyle(
-                color: Colors.grey[700],
-                fontSize: 14.0,
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16.0,
+                    ),
+                  ),
+                  SizedBox(height: 4),
+                  Text(
+                    price,
+                    style: TextStyle(
+                      color: Colors.grey[700],
+                      fontSize: 14.0,
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
