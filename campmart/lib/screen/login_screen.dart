@@ -226,7 +226,7 @@ class _LoginPageState extends State<LoginPage> {
                       const SizedBox(height: 24.0),
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.push(
+                          Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => SignUpPage()),
