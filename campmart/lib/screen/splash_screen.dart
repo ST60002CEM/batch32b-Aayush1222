@@ -23,20 +23,24 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: const Color.fromARGB(255, 44, 44, 61),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Adjusted size for better appearance
-            Image.asset(
-              'assets/images/app_logo.ico', // Ensure the image format is appropriate
-              width: 150, // Width of the logo
-              height: 150, // Height of the logo
+            Text(
+              "Hey There",
+              style: TextStyle(fontSize: 50),
             ),
-            const SizedBox(height: 20),
-            const CircularProgressIndicator(
+            // Adjusted size for better appearance
+            // Image.asset(
+            //   'assets/images/app_logo.ico', // Ensure the image format is appropriate
+            //   width: 150, // Width of the logo
+            //   height: 150, // Height of the logo
+            // ),
+            SizedBox(height: 20),
+            CircularProgressIndicator(
               color: Colors.white,
             ),
           ],
