@@ -1,4 +1,5 @@
 import '../screen/register_screen.dart';
+import '../screen/dashboard_screen.dart'; // Import the DashboardScreen
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -123,6 +124,12 @@ class _LoginPageState extends State<LoginPage> {
                           if (_formKey.currentState!.validate()) {
                             _formKey.currentState!.save();
                             // Handle login logic
+                            // Assuming login is successful, navigate to the DashboardScreen
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => DashboardScreen()),
+                            );
                           }
                         },
                         style: ElevatedButton.styleFrom(
