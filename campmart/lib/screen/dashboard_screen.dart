@@ -185,6 +185,13 @@ class ItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get the screen width
+    double screenWidth = MediaQuery.of(context).size.width;
+
+    // Set the image height based on the screen width
+    double imageHeight =
+        screenWidth / 2 * 0.75; // Adjust the height based on aspect ratio
+
     return GestureDetector(
       onTap: onTap,
       child: Card(
@@ -202,7 +209,8 @@ class ItemCard extends StatelessWidget {
               ),
               child: Image.asset(
                 image,
-                height: 200, // Increased height for better visibility
+                height:
+                    imageHeight, // Dynamically set height based on screen size
                 width: double.infinity,
                 fit: BoxFit.cover,
               ),
