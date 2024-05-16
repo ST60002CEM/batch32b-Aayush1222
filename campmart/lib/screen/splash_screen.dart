@@ -12,8 +12,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(
-      const Duration(
-          seconds: 2), // Increased duration to give a better splash effect
+      const Duration(seconds: 1), //Duration for splash screen
       () => Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => LoginPage()),
