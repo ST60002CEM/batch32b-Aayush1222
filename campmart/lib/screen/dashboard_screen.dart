@@ -1,4 +1,7 @@
+import 'package:campmart/screen/cart_screen.dart';
+import 'package:campmart/screen/favourite_screen.dart';
 import 'package:flutter/material.dart';
+import '../screen/profile_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   @override
@@ -7,6 +10,13 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> {
   int _selectedIndex = 0;
+
+  final List<Widget> _screens = [
+    DashboardContent(), // Home screen content
+    CartScreen(), // Placeholder for Cart screen
+    FavouriteScreen(), // Placeholder for Favorites screen
+    ProfileScreen(), // Profile screen
+  ];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -38,96 +48,24 @@ class _DashboardScreenState extends State<DashboardScreen> {
               icon: Icon(Icons.person),
               onPressed: () {
                 // Handle profile button tap
-                print('Profile button tapped');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ProfileScreen()),
+                );
               },
             ),
           ],
         ),
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: 'Search',
-                prefixIcon: Icon(Icons.search),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30.0),
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                _buildFilterButton('Recently Added'),
-                _buildFilterButton('All'),
-                _buildFilterButton('New'),
-              ],
-            ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: GridView.count(
-                crossAxisCount: 2,
-                childAspectRatio: 0.75,
-                crossAxisSpacing: 8.0,
-                mainAxisSpacing: 8.0,
-                children: [
-                  ItemCard(
-                    image: 'assets/images/laptop.png',
-                    title: 'Acer Laptop',
-                    price: '\$450.9',
-                    onTap: () {
-                      // Handle item tap
-                      print('Acer Laptop tapped');
-                    },
-                  ),
-                  ItemCard(
-                    image: 'assets/images/book.png',
-                    title: "You're Not So Smart",
-                    price: '\$37.9',
-                    onTap: () {
-                      // Handle item tap
-                      print("You're Not So Smart tapped");
-                    },
-                  ),
-                  ItemCard(
-                    image: 'assets/images/charger.png',
-                    title: 'Charger',
-                    price: '\$19.9',
-                    onTap: () {
-                      // Handle item tap
-                      print('Charger tapped');
-                    },
-                  ),
-                  ItemCard(
-                    image: 'assets/images/table.png',
-                    title: 'Phone Case',
-                    price: '\$12.9',
-                    onTap: () {
-                      // Handle item tap
-                      print('Phone Case tapped');
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
+      body: _screens[_selectedIndex], // Display the selected screen
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color.fromARGB(255, 44, 44, 61),
-        selectedItemColor: Color.fromARGB(255, 67, 62, 62),
-        unselectedItemColor: Color.fromARGB(179, 28, 27, 27),
+        backgroundColor: const Color.fromARGB(255, 44, 44, 61),
+        selectedItemColor: const Color.fromARGB(255, 67, 62, 62),
+        unselectedItemColor: const Color.fromARGB(179, 28, 27, 27),
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         type: BottomNavigationBarType.shifting,
-        items: [
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
@@ -152,19 +90,101 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
     );
   }
+}
+
+class DashboardContent extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextField(
+            decoration: InputDecoration(
+              hintText: 'Search',
+              prefixIcon: Icon(Icons.search),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(30.0),
+              ),
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              _buildFilterButton('Recently Added'),
+              _buildFilterButton('All'),
+              _buildFilterButton('New'),
+            ],
+          ),
+        ),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GridView.count(
+              crossAxisCount: 2,
+              childAspectRatio: 0.75,
+              crossAxisSpacing: 8.0,
+              mainAxisSpacing: 8.0,
+              children: [
+                ItemCard(
+                  image: 'assets/images/laptop.png',
+                  title: 'Acer Laptop',
+                  price: '\$450.9',
+                  onTap: () {
+                    // Handle item tap
+                    print('Acer Laptop tapped');
+                  },
+                ),
+                ItemCard(
+                  image: 'assets/images/book.png',
+                  title: "You're Not So Smart",
+                  price: '\$37.9',
+                  onTap: () {
+                    // Handle item tap
+                    print("You're Not So Smart tapped");
+                  },
+                ),
+                ItemCard(
+                  image: 'assets/images/charger.png',
+                  title: 'Charger',
+                  price: '\$19.9',
+                  onTap: () {
+                    // Handle item tap
+                    print('Charger tapped');
+                  },
+                ),
+                ItemCard(
+                  image: 'assets/images/table.png',
+                  title: 'Phone Case',
+                  price: '\$12.9',
+                  onTap: () {
+                    // Handle item tap
+                    print('Phone Case tapped');
+                  },
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
 
   ElevatedButton _buildFilterButton(String text) {
     return ElevatedButton(
       onPressed: () {},
       style: ElevatedButton.styleFrom(
-        backgroundColor: Color.fromARGB(255, 44, 44, 61),
+        backgroundColor: const Color.fromARGB(255, 44, 44, 61),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ),
       ),
       child: Text(
         text,
-        style: TextStyle(color: Colors.white),
+        style: const TextStyle(color: Colors.white),
       ),
     );
   }
@@ -203,7 +223,7 @@ class ItemCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(15.0),
                 topRight: Radius.circular(15.0),
               ),
@@ -222,12 +242,12 @@ class ItemCard extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16.0,
                     ),
                   ),
-                  SizedBox(height: 4),
+                  const SizedBox(height: 4),
                   Text(
                     price,
                     style: TextStyle(
