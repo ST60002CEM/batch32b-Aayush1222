@@ -1,11 +1,6 @@
 import 'package:campmart/screen/setting_screen.dart';
 import 'package:flutter/material.dart';
-// import 'package:your_app_name/screen/my_orders_screen.dart'; // Import the MyOrdersScreen
-// import 'package:your_app_name/screen/shipping_addresses_screen.dart'; // Import the ShippingAddressesScreen
-// import 'package:your_app_name/screen/payment_methods_screen.dart'; // Import the PaymentMethodsScreen
-// import 'package:your_app_name/screen/promocodes_screen.dart'; // Import the PromocodesScreen
-// import 'package:your_app_name/screen/my_reviews_screen.dart'; // Import the MyReviewsScreen
-// import 'package:your_app_name/screen/settings_screen.dart'; // Import the SettingsScreen
+import '../screen/login_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   @override
@@ -29,6 +24,7 @@ class ProfileScreen extends StatelessWidget {
             title: Text('My orders'),
             trailing: Icon(Icons.chevron_right),
             onTap: () {
+              // Navigate to My Orders screen
               // Navigator.push(
               //   context,
               //   MaterialPageRoute(builder: (context) => MyOrdersScreen()),
@@ -40,6 +36,7 @@ class ProfileScreen extends StatelessWidget {
             title: Text('Shipping addresses'),
             trailing: Icon(Icons.chevron_right),
             onTap: () {
+              // Navigate to Shipping Addresses screen
               // Navigator.push(
               //   context,
               //   MaterialPageRoute(builder: (context) => ShippingAddressesScreen()),
@@ -51,6 +48,7 @@ class ProfileScreen extends StatelessWidget {
             title: Text('Payment methods'),
             trailing: Icon(Icons.chevron_right),
             onTap: () {
+              // Navigate to Payment Methods screen
               // Navigator.push(
               //   context,
               //   MaterialPageRoute(builder: (context) => PaymentMethodsScreen()),
@@ -62,10 +60,11 @@ class ProfileScreen extends StatelessWidget {
             title: Text('Promocodes'),
             trailing: Text('You have no applied promocodes'),
             onTap: () {
-              //   Navigator.push(
-              //     context,
-              //     MaterialPageRoute(builder: (context) => PromocodesScreen()),
-              //   );
+              // Navigate to Promocodes screen
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(builder: (context) => PromocodesScreen()),
+              // );
             },
           ),
           ListTile(
@@ -73,6 +72,7 @@ class ProfileScreen extends StatelessWidget {
             title: Text('My reviews'),
             trailing: Text('Reviews for 4 items'),
             onTap: () {
+              // Navigate to My Reviews screen
               // Navigator.push(
               //   context,
               //   MaterialPageRoute(builder: (context) => MyReviewsScreen()),
@@ -84,9 +84,46 @@ class ProfileScreen extends StatelessWidget {
             title: Text('Settings'),
             trailing: Icon(Icons.chevron_right),
             onTap: () {
+              // Navigate to Settings screen
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => SettingsScreen()),
+              );
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.logout),
+            title: Text('Logout'),
+            onTap: () {
+              // Show logout confirmation dialog
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text('Confirm Logout'),
+                    content: Text('Are you sure you want to logout?'),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop(); // Close dialog
+                        },
+                        child: Text('Cancel'),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          // Logout and navigate to login screen
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => LoginPage()),
+                            (route) => false, // Remove all routes
+                          );
+                        },
+                        child: Text('Logout'),
+                      ),
+                    ],
+                  );
+                },
               );
             },
           ),
