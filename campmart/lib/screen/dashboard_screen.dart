@@ -1,30 +1,57 @@
 import 'package:flutter/material.dart';
 
-class DashboardScreen extends StatefulWidget {
-  @override
-  _DashboardScreenState createState() => _DashboardScreenState();
-}
-
-class _DashboardScreenState extends State<DashboardScreen> {
-  int _selectedIndex = 0;
-
+class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Dashboard'),
-        backgroundColor: Color.fromARGB(255, 44, 44, 61),
+        automaticallyImplyLeading: false, // To remove the default back button
+        backgroundColor: Color.fromARGB(255, 255, 255, 255),
+        title: Row(
+          children: [
+            // Dropdown menu on the top left
+            PopupMenuButton(
+              itemBuilder: (BuildContext context) {
+                return [
+                  PopupMenuItem(
+                    child: Text('Option 1'),
+                    value: 'Option 1',
+                  ),
+                  PopupMenuItem(
+                    child: Text('Option 2'),
+                    value: 'Option 2',
+                  ),
+                  PopupMenuItem(
+                    child: Text('Option 3'),
+                    value: 'Option 3',
+                  ),
+                ];
+              },
+            ),
+            Spacer(), // To push the profile icon to the right
+            // Profile icon on the top right
+            IconButton(
+              icon: Icon(Icons.person),
+              onPressed: () {
+                // Add functionality to open profile page
+              },
+            ),
+          ],
+        ),
       ),
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: 'Search',
-                prefixIcon: Icon(Icons.search),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30.0),
+          Flexible(
+            flex: 1,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                decoration: InputDecoration(
+                  hintText: 'Search',
+                  prefixIcon: Icon(Icons.search),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
                 ),
               ),
             ),
@@ -40,7 +67,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ],
             ),
           ),
-          Expanded(
+          Flexible(
+            flex: 3,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: GridView.count(
@@ -50,7 +78,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 mainAxisSpacing: 8.0,
                 children: [
                   ItemCard(title: 'Acer Laptop', price: '\$450.9'),
-                  ItemCard(title: "You're not so smart", price: '\$37.9'),
+                  ItemCard(title: "You're Not So Smart", price: '\$37.9'),
                   ItemCard(title: 'Charger', price: '\$19.9'),
                   ItemCard(title: 'Phone Case', price: '\$12.9'),
                 ],
@@ -60,16 +88,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-          // Add navigation logic here based on the selected index
-        },
         backgroundColor: Color.fromARGB(255, 44, 44, 61),
-        selectedItemColor: Color.fromARGB(255, 44, 44, 61),
-        unselectedItemColor: Color.fromARGB(255, 44, 44, 61),
+        selectedItemColor: Color.fromARGB(255, 67, 62, 62),
+        unselectedItemColor: Color.fromARGB(179, 28, 27, 27),
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(
@@ -91,7 +112,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
           borderRadius: BorderRadius.circular(30.0),
         ),
       ),
-      child: Text(text),
+      child: Text(
+        text,
+        style: TextStyle(color: Colors.white), // Set text color to white
+      ),
     );
   }
 }
