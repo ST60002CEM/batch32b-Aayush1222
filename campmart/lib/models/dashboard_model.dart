@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 
-class DashboardModel with ChangeNotifier {
-  int _selectedIndex = 0;
+class DashboardModel {
+  final String image;
+  final String title;
+  final String price;
+  final VoidCallback? onTap;
 
-  int get selectedIndex => _selectedIndex;
-
-  void onItemTapped(int index) {
-    _selectedIndex = index;
-    notifyListeners();
-  }
+  DashboardModel({
+    required this.image,
+    required this.title,
+    required this.price,
+    this.onTap,
+  });
 }

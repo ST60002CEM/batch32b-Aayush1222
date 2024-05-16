@@ -1,6 +1,7 @@
+import 'package:campmart/models/dashboard_model.dart';
+import 'package:flutter/material.dart';
 import 'package:campmart/screen/cart_screen.dart';
 import 'package:campmart/screen/favourite_screen.dart';
-import 'package:flutter/material.dart';
 import '../screen/profile_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -129,41 +130,49 @@ class DashboardContent extends StatelessWidget {
               crossAxisSpacing: 8.0,
               mainAxisSpacing: 8.0,
               children: [
-                ItemCard(
-                  image: 'assets/images/laptop.png',
-                  title: 'Acer Laptop',
-                  price: '\$450.9',
-                  onTap: () {
-                    // Handle item tap
-                    print('Acer Laptop tapped');
-                  },
+                DashboardItemCard(
+                  dashboardModel: DashboardModel(
+                    image: 'assets/images/laptop.png',
+                    title: 'Acer Laptop',
+                    price: '\$450.9',
+                    onTap: () {
+                      // Handle item tap
+                      print('Acer Laptop tapped');
+                    },
+                  ),
                 ),
-                ItemCard(
-                  image: 'assets/images/book.png',
-                  title: "You're Not So Smart",
-                  price: '\$37.9',
-                  onTap: () {
-                    // Handle item tap
-                    print("You're Not So Smart tapped");
-                  },
+                DashboardItemCard(
+                  dashboardModel: DashboardModel(
+                    image: 'assets/images/book.png',
+                    title: "You're Not So Smart",
+                    price: '\$37.9',
+                    onTap: () {
+                      // Handle item tap
+                      print("You're Not So Smart tapped");
+                    },
+                  ),
                 ),
-                ItemCard(
-                  image: 'assets/images/charger.png',
-                  title: 'Charger',
-                  price: '\$19.9',
-                  onTap: () {
-                    // Handle item tap
-                    print('Charger tapped');
-                  },
+                DashboardItemCard(
+                  dashboardModel: DashboardModel(
+                    image: 'assets/images/charger.png',
+                    title: 'Charger',
+                    price: '\$19.9',
+                    onTap: () {
+                      // Handle item tap
+                      print('Charger tapped');
+                    },
+                  ),
                 ),
-                ItemCard(
-                  image: 'assets/images/table.png',
-                  title: 'Phone Case',
-                  price: '\$12.9',
-                  onTap: () {
-                    // Handle item tap
-                    print('Phone Case tapped');
-                  },
+                DashboardItemCard(
+                  dashboardModel: DashboardModel(
+                    image: 'assets/images/table.png',
+                    title: 'Phone Case',
+                    price: '\$12.9',
+                    onTap: () {
+                      // Handle item tap
+                      print('Phone Case tapped');
+                    },
+                  ),
                 ),
               ],
             ),
@@ -190,30 +199,18 @@ class DashboardContent extends StatelessWidget {
   }
 }
 
-class ItemCard extends StatelessWidget {
-  final String image;
-  final String title;
-  final String price;
-  final VoidCallback? onTap;
+class DashboardItemCard extends StatelessWidget {
+  final DashboardModel dashboardModel;
 
-  ItemCard({
-    required this.image,
-    required this.title,
-    required this.price,
-    this.onTap,
-  });
+  DashboardItemCard({required this.dashboardModel});
 
   @override
   Widget build(BuildContext context) {
-    // Get the screen width
     double screenWidth = MediaQuery.of(context).size.width;
-
-    // Set the image height based on the screen width
-    double imageHeight =
-        screenWidth / 2 * 0.75; // Adjust the height based on aspect ratio
+    double imageHeight = screenWidth / 2 * 0.75;
 
     return GestureDetector(
-      onTap: onTap,
+      onTap: dashboardModel.onTap,
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15.0),
@@ -228,9 +225,8 @@ class ItemCard extends StatelessWidget {
                 topRight: Radius.circular(15.0),
               ),
               child: Image.asset(
-                image,
-                height:
-                    imageHeight, // Dynamically set height based on screen size
+                dashboardModel.image,
+                height: imageHeight,
                 width: double.infinity,
                 fit: BoxFit.cover,
               ),
@@ -241,15 +237,15 @@ class ItemCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    title,
+                    dashboardModel.title,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16.0,
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: 7),
                   Text(
-                    price,
+                    dashboardModel.price,
                     style: TextStyle(
                       color: Colors.grey[700],
                       fontSize: 14.0,

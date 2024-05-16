@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+import '../models/login_model.dart'; // Import the LoginModel
 import '../screen/register_screen.dart';
 import '../screen/dashboard_screen.dart'; // Import the DashboardScreen
-import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -11,8 +12,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
-  String _email = '';
-  String _password = '';
+  final _loginModel =
+      LoginModel(email: '', password: ''); // Create an instance of LoginModel
   bool _obscureText = true; // To toggle password visibility
 
   @override
@@ -81,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                           return null;
                         },
                         onSaved: (value) {
-                          _email = value!;
+                          _loginModel.email = value!;
                         },
                       ),
                       const SizedBox(height: 16.0),
@@ -115,7 +116,7 @@ class _LoginPageState extends State<LoginPage> {
                           return null;
                         },
                         onSaved: (value) {
-                          _password = value!;
+                          _loginModel.password = value!;
                         },
                       ),
                       const SizedBox(height: 16.0),
@@ -124,12 +125,16 @@ class _LoginPageState extends State<LoginPage> {
                           if (_formKey.currentState!.validate()) {
                             _formKey.currentState!.save();
                             // Handle login logic
-                            // Assuming login is successful, navigate to the DashboardScreen
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => DashboardScreen()),
-                            );
+                            if (_loginModel.authenticate()) {
+                              // Assuming login is successful, navigate to the DashboardScreen
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => DashboardScreen()),
+                              );
+                            } else {
+                              // Show an error message or handle failed authentication
+                            }
                           }
                         },
                         style: ElevatedButton.styleFrom(
