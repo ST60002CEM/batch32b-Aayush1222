@@ -2,11 +2,7 @@ import 'package:campmart/features/auth/domain/entity/auth_entity.dart';
 import 'package:campmart/features/auth/presentation/viewmodel/auth_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-// final authViewModelProvider =
-//     StateNotifierProvider<AuthViewModel, AuthViewModelState>((ref) {
-//   return AuthViewModel(ref.read);
-// });
+import 'package:campmart/features/auth/presentation/navigator/register_navigator.dart';
 
 class RegisterView extends ConsumerStatefulWidget {
   const RegisterView({Key? key}) : super(key: key);
@@ -15,7 +11,7 @@ class RegisterView extends ConsumerStatefulWidget {
   ConsumerState<RegisterView> createState() => _RegisterViewState();
 }
 
-class _RegisterViewState extends ConsumerState<RegisterView> {
+class _RegisterViewState extends ConsumerState<RegisterView> with RegisterViewRoute {
   final _key = GlobalKey<FormState>();
 
   final _nameController = TextEditingController();
@@ -31,7 +27,6 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Sign Up'),
-        // backgroundColor: Colors.orangeAccent,
         backgroundColor: const Color.fromARGB(255, 44, 44, 61),
       ),
       body: Container(
@@ -59,15 +54,13 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                 const SizedBox(height: 20.0),
                 _buildTextField(_emailController, 'Email address', false),
                 const SizedBox(height: 20.0),
-                _buildPasswordField(_passwordController, 'Password', isObscure,
-                    () {
+                _buildPasswordField(_passwordController, 'Password', isObscure, () {
                   setState(() {
                     isObscure = !isObscure;
                   });
                 }),
                 const SizedBox(height: 20.0),
-                _buildPasswordField(_confirmPasswordController,
-                    'Confirm Password', isConfirmObscure, () {
+                _buildPasswordField(_confirmPasswordController, 'Confirm Password', isConfirmObscure, () {
                   setState(() {
                     isConfirmObscure = !isConfirmObscure;
                   });
@@ -77,8 +70,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromRGBO(44, 44, 61, 1),
                     foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 50, vertical: 15),
+                    padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
@@ -93,9 +85,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                         password: _passwordController.text,
                       );
 
-                      ref
-                          .read(authViewModelProvider.notifier)
-                          .registerStudent(student);
+                      ref.read(authViewModelProvider.notifier).registerStudent(student);
                     }
                   },
                 ),
@@ -110,12 +100,10 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                     TextButton(
                       child: const Text(
                         'Login',
-                        style: TextStyle(color: Color.fromRGBO(255, 255, 255, 1),),
+                        style: TextStyle(color: Color.fromRGBO(255, 255, 255, 1)),
                       ),
                       onPressed: () {
-                        ref
-                            .read(authViewModelProvider.notifier)
-                            .openLoginView();
+                        openLoginView();
                       },
                     ),
                   ],
@@ -129,8 +117,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
     );
   }
 
-  Widget _buildTextField(
-      TextEditingController controller, String labelText, bool obscureText) {
+  Widget _buildTextField(TextEditingController controller, String labelText, bool obscureText) {
     return TextFormField(
       controller: controller,
       obscureText: obscureText,
@@ -145,7 +132,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
           borderRadius: BorderRadius.circular(10.0),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Color.fromRGBO(44, 44, 61, 1),),
+          borderSide: const BorderSide(color: Color.fromRGBO(44, 44, 61, 1)),
           borderRadius: BorderRadius.circular(10.0),
         ),
       ),
@@ -158,8 +145,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
     );
   }
 
-  Widget _buildPasswordField(TextEditingController controller, String labelText,
-      bool obscureText, VoidCallback toggleVisibility) {
+  Widget _buildPasswordField(TextEditingController controller, String labelText, bool obscureText, VoidCallback toggleVisibility) {
     return TextFormField(
       controller: controller,
       obscureText: obscureText,
@@ -170,11 +156,11 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
         labelText: labelText,
         labelStyle: const TextStyle(color: Colors.black),
         enabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Color.fromRGBO(44, 44, 61, 1),),
+          borderSide: const BorderSide(color: Color.fromRGBO(44, 44, 61, 1)),
           borderRadius: BorderRadius.circular(10.0),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Color.fromRGBO(44, 44, 61, 1),),
+          borderSide: const BorderSide(color: Color.fromRGBO(44, 44, 61, 1)),
           borderRadius: BorderRadius.circular(10.0),
         ),
         suffixIcon: IconButton(
