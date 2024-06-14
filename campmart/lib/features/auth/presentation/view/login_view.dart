@@ -18,12 +18,28 @@ class _LoginViewState extends ConsumerState<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Form(
-          key: _formKey,
-          child: Center(
-            child: SingleChildScrollView(
-              child: Padding(
+      appBar: AppBar(
+        title: const Text('Login'),
+        backgroundColor: const Color.fromARGB(255, 44, 44, 61),
+      ),
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color.fromARGB(255, 44, 44, 61),
+              Color.fromARGB(255, 75, 75, 105),
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: SafeArea(
+          child: Form(
+            key: _formKey,
+            child: Center(
+              child: SingleChildScrollView(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -33,6 +49,7 @@ class _LoginViewState extends ConsumerState<LoginView> {
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
                     ),
                     const SizedBox(height: 40),
@@ -41,6 +58,7 @@ class _LoginViewState extends ConsumerState<LoginView> {
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -52,46 +70,13 @@ class _LoginViewState extends ConsumerState<LoginView> {
                       ),
                     ),
                     const SizedBox(height: 32),
-                    TextFormField(
-                      key: const ValueKey('email'),
-                      controller: _emailController,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Email address',
-                      ),
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please enter email address';
-                        }
-                        return null;
-                      },
-                    ),
+                    _buildTextField(_emailController, 'Email address', false),
                     const SizedBox(height: 16),
-                    TextFormField(
-                      key: const ValueKey('password'),
-                      controller: _passwordController,
-                      obscureText: isObscure,
-                      decoration: InputDecoration(
-                        border: const OutlineInputBorder(),
-                        labelText: 'Password',
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            isObscure ? Icons.visibility : Icons.visibility_off,
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              isObscure = !isObscure;
-                            });
-                          },
-                        ),
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter password';
-                        }
-                        return null;
-                      },
-                    ),
+                    _buildPasswordField(_passwordController, 'Password', isObscure, () {
+                      setState(() {
+                        isObscure = !isObscure;
+                      });
+                    }),
                     const SizedBox(height: 16),
                     ElevatedButton(
                       onPressed: () async {
@@ -104,16 +89,18 @@ class _LoginViewState extends ConsumerState<LoginView> {
                               );
                         }
                       },
-                      child: const SizedBox(
-                        height: 50,
-                        width: double.infinity,
-                        child: Center(
-                          child: Text(
-                            'Sign In',
-                            style: TextStyle(
-                              fontSize: 18,
-                            ),
-                          ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color.fromARGB(255, 44, 44, 61),
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                      ),
+                      child: const Text(
+                        'Sign In',
+                        style: TextStyle(
+                          fontSize: 18,
                         ),
                       ),
                     ),
@@ -160,8 +147,10 @@ class _LoginViewState extends ConsumerState<LoginView> {
                             // Handle Google login
                           },
                           icon: Image.asset(
-                              'assets/images/google_icon.png'), // Use Image.asset
-                          iconSize: 2.0, // Adjust the size as needed
+                            'assets/images/google_logo.png',
+                            width: 24, // Adjust the width as needed
+                            height: 24, // Adjust the height as needed
+                          ),
                         ),
                       ],
                     ),
@@ -173,16 +162,18 @@ class _LoginViewState extends ConsumerState<LoginView> {
                             .read(authViewModelProvider.notifier)
                             .openRegisterView();
                       },
-                      child: const SizedBox(
-                        height: 50,
-                        width: double.infinity,
-                        child: Center(
-                          child: Text(
-                            'Sign up',
-                            style: TextStyle(
-                              fontSize: 18,
-                            ),
-                          ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color.fromARGB(255, 44, 44, 61),
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                      ),
+                      child: const Text(
+                        'Sign up',
+                        style: TextStyle(
+                          fontSize: 18,
                         ),
                       ),
                     ),
@@ -193,6 +184,67 @@ class _LoginViewState extends ConsumerState<LoginView> {
           ),
         ),
       ),
+      backgroundColor: Colors.orange[50],
+    );
+  }
+
+  Widget _buildTextField(TextEditingController controller, String labelText, bool obscureText) {
+    return TextFormField(
+      controller: controller,
+      obscureText: obscureText,
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: Colors.white,
+        hintText: labelText,
+        labelText: labelText,
+        labelStyle: const TextStyle(color: Colors.black),
+        enabledBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.orangeAccent),
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.orangeAccent),
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+      ),
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Please enter $labelText';
+        }
+        return null;
+      },
+    );
+  }
+
+  Widget _buildPasswordField(TextEditingController controller, String labelText, bool obscureText, VoidCallback toggleVisibility) {
+    return TextFormField(
+      controller: controller,
+      obscureText: obscureText,
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: Colors.white,
+        hintText: labelText,
+        labelText: labelText,
+        labelStyle: const TextStyle(color: Colors.black),
+        enabledBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.orangeAccent),
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.orangeAccent),
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        suffixIcon: IconButton(
+          icon: Icon(obscureText ? Icons.visibility : Icons.visibility_off),
+          onPressed: toggleVisibility,
+        ),
+      ),
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Please enter $labelText';
+        }
+        return null;
+      },
     );
   }
 }

@@ -40,7 +40,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Color.fromARGB(255, 44, 44, 61),
+              Color.fromRGBO(44, 44, 61, 1),
               Color.fromARGB(255, 75, 75, 105),
             ],
             begin: Alignment.topCenter,
@@ -75,7 +75,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                 const SizedBox(height: 20.0),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.orangeAccent,
+                    backgroundColor: Color.fromRGBO(44, 44, 61, 1),
                     foregroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(
                         horizontal: 50, vertical: 15),
@@ -110,7 +110,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                     TextButton(
                       child: const Text(
                         'Login',
-                        style: TextStyle(color: Colors.orangeAccent),
+                        style: TextStyle(color: Color.fromRGBO(255, 255, 255, 1),),
                       ),
                       onPressed: () {
                         ref
@@ -141,11 +141,11 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
         labelText: labelText,
         labelStyle: const TextStyle(color: Colors.black),
         enabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.orangeAccent),
+          borderSide: const BorderSide(color: Color.fromARGB(255, 77, 64, 255)),
           borderRadius: BorderRadius.circular(10.0),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.orangeAccent),
+          borderSide: const BorderSide(color: Color.fromRGBO(44, 44, 61, 1),),
           borderRadius: BorderRadius.circular(10.0),
         ),
       ),
@@ -170,11 +170,11 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
         labelText: labelText,
         labelStyle: const TextStyle(color: Colors.black),
         enabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.orangeAccent),
+          borderSide: const BorderSide(color: Color.fromRGBO(44, 44, 61, 1),),
           borderRadius: BorderRadius.circular(10.0),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.orangeAccent),
+          borderSide: const BorderSide(color: Color.fromRGBO(44, 44, 61, 1),),
           borderRadius: BorderRadius.circular(10.0),
         ),
         suffixIcon: IconButton(
