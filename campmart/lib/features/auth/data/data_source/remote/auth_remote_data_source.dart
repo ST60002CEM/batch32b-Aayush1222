@@ -3,18 +3,13 @@ import 'dart:io';
 import 'package:campmart/app/constants/api_endpoint.dart';
 import 'package:campmart/core/failure/failure.dart';
 import 'package:campmart/core/networking/remote/http_service.dart';
+import 'package:campmart/core/shared_prefs/user_shared_prefs.dart';
 import 'package:campmart/features/auth/data/dto/get_current_user_dto.dart';
 import 'package:campmart/features/auth/domain/entity/auth_entity.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:student_management_starter/app/constants/api_endpoint.dart';
-import 'package:student_management_starter/core/failure/failure.dart';
-import 'package:student_management_starter/core/networking/remote/http_service.dart';
-import 'package:student_management_starter/core/shared_prefs/user_shared_prefs.dart';
-import 'package:student_management_starter/features/auth/data/dto/get_current_user_dto.dart';
-import 'package:student_management_starter/features/auth/data/model/auth_api_model.dart';
-import 'package:student_management_starter/features/auth/domain/entity/auth_entity.dart';
+
 
 final authRemoteDataSourceProvider = Provider(
   (ref) => AuthRemoteDataSource(
