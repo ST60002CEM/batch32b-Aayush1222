@@ -8,6 +8,8 @@ class GetCurrentUserDto {
   @JsonKey(name:"_id")
   final String id;
   final String name;
+  final String username;
+
   final String email;
   final String password;
 
@@ -17,6 +19,8 @@ class GetCurrentUserDto {
   GetCurrentUserDto({
     required this.id,
     required this.name,
+    required this.username,
+
     required this.email,
     required this.password,
     
@@ -34,7 +38,7 @@ class GetCurrentUserDto {
         // courses:  course.map((course) {
         //   return CourseEntity( courseId: course, courseName: '');
         // }).toList() ,
-        // username: username,
+        username: username,
         password: '');
   }
 

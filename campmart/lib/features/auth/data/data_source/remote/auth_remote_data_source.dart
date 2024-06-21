@@ -30,6 +30,7 @@ class AuthRemoteDataSource {
         ApiEndpoints.register,
         data: {
           "name": student.name,
+          //"username" : student.username,
           "email": student.email,
 
           "password": student.password,

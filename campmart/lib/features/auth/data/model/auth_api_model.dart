@@ -8,6 +8,8 @@ class AuthApiModel {
   @JsonKey(name: '_id')
   final String id;
   final String name;
+  final String username;
+
 
   final String email;
   final String? password;
@@ -15,6 +17,8 @@ class AuthApiModel {
   AuthApiModel({
     required this.id,
     required this.name,
+    required this.username,
+
     required this.email,
     required this.password,
   });
@@ -29,6 +33,7 @@ class AuthApiModel {
     return AuthEntity(
       id: id,
       name: name,
+      username : username,
       email: email,
       password: password ?? '',
     );
