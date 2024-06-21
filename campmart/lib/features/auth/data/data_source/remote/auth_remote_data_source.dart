@@ -10,7 +10,6 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-
 final authRemoteDataSourceProvider = Provider(
   (ref) => AuthRemoteDataSource(
     dio: ref.read(httpServiceProvider),
@@ -30,7 +29,7 @@ class AuthRemoteDataSource {
         ApiEndpoints.register,
         data: {
           "name": student.name,
-          "aayushm" : student.username,
+          "username": student.username,
           "email": student.email,
 
           "password": student.password,
@@ -131,8 +130,8 @@ class AuthRemoteDataSource {
       String? token;
       var data = await userSharedPrefs.getUserToken();
       data.fold(
-            (l) => token = null,
-            (r) => token = r!,
+        (l) => token = null,
+        (r) => token = r!,
       );
 
       var response = await dio.get(
@@ -143,7 +142,8 @@ class AuthRemoteDataSource {
       );
 
       if (response.statusCode == 200) {
-        GetCurrentUserDto getCurrentUserDto = GetCurrentUserDto.fromJson(response.data);
+        GetCurrentUserDto getCurrentUserDto =
+            GetCurrentUserDto.fromJson(response.data);
 
         return Right(getCurrentUserDto.toEntity());
       } else {
