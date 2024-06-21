@@ -30,6 +30,7 @@ class GetCurrentUserDto {
     return AuthEntity(
         id: id,
         name: name,
+        username: username,
         email: email,
         // lname: lname,
         // image: image,
@@ -38,7 +39,6 @@ class GetCurrentUserDto {
         // courses:  course.map((course) {
         //   return CourseEntity( courseId: course, courseName: '');
         // }).toList() ,
-        username: username,
         password: '');
   }
 

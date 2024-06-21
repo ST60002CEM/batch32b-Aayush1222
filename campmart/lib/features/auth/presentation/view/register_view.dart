@@ -88,7 +88,7 @@ class _RegisterViewState extends ConsumerState<RegisterView>
                     if (_key.currentState!.validate()) {
                       var student = AuthEntity(
                         name: _nameController.text,
-                        image: ref.read(authViewModelProvider).imageName ?? '',
+                        // image: ref.read(authViewModelProvider).imageName ?? '',
                         email: _emailController.text,
                         password: _passwordController.text,
                         username: _userController.text,
