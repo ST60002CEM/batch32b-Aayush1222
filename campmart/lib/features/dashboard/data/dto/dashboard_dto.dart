@@ -1,5 +1,4 @@
 import 'package:campmart/features/dashboard/data/model/dashboard_model.dart';
-import 'package:finalproject/features/dashboard/data/model/dashboard_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'dashboard_dto.g.dart';
 

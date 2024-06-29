@@ -1,13 +1,11 @@
 import 'package:campmart/app/constants/api_endpoint.dart';
 import 'package:campmart/core/failure/post_failure.dart';
 import 'package:campmart/core/networking/remote/http_service.dart';
+import 'package:campmart/features/dashboard/data/dto/dashboard_dto.dart';
+import 'package:campmart/features/dashboard/domain/entity/dashboard_entity.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:finalproject/app/constants/api_endpoint.dart';
-import 'package:finalproject/core/failure/post_failure.dart';
-import 'package:finalproject/core/networking/remote/http_service.dart';
-import 'package:finalproject/features/dashboard/data/dto/dashboard_dto.dart';
-import 'package:finalproject/features/dashboard/domain/entity/dashboard_entity.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final dashboardRemoteDataSourceProvider =
