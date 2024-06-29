@@ -1,6 +1,7 @@
 import 'package:campmart/core/failure/post_failure.dart';
 import 'package:campmart/features/dashboard/data/data_source/dashboard_remote_data_source.dart';
 import 'package:campmart/features/dashboard/domain/entity/dashboard_entity.dart';
+import 'package:campmart/features/dashboard/domain/repository/dashboard_repository.dart';
 import 'package:dartz/dartz.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
