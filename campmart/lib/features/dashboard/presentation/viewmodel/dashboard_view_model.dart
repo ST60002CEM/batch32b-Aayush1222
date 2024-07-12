@@ -1,29 +1,30 @@
-import 'package:campmart/features/dashboard/data/data_source/dashboard_remote_data_source.dart';
+
+import 'package:campmart/features/dashboard/data/data_source/remote/dashboard_remote_datasource.dart';
 import 'package:campmart/features/dashboard/presentation/navigator/dashboard_navigator.dart';
 import 'package:campmart/features/dashboard/presentation/state/dashboard_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+ 
 final dashboardViewModelProvider =
     StateNotifierProvider<DashboardViewModel, DashboardState>((ref) {
   final navigator = ref.read(dashboardViewNavigatorProvider);
   final dashboardDataSource = ref.read(dashboardRemoteDataSourceProvider);
   return DashboardViewModel(navigator, dashboardDataSource);
 });
-
+ 
 class DashboardViewModel extends StateNotifier<DashboardState> {
   DashboardViewNavigator navigator;
   final DashboardRemoteDataSource _postsDataSource;
-
+ 
   DashboardViewModel(this.navigator, this._postsDataSource)
       : super(DashboardState.initial()) {
     getPosts();
   }
-
+ 
   Future resetState() async {
     state = DashboardState.initial();
     getPosts();
   }
-
+ 
   Future getPosts({int? page}) async {
     state = state.copyWith(isLoading: true);
     final currentState = state;
@@ -52,8 +53,10 @@ class DashboardViewModel extends StateNotifier<DashboardState> {
       );
     }
   }
-
+ 
   void openPostPage() {
     // code here
   }
 }
+ 
+ 
