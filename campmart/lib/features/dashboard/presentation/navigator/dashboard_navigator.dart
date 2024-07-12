@@ -1,13 +1,16 @@
 import 'package:campmart/app/navigator/navigator.dart';
-import 'package:campmart/features/dashboard/presentation/view/dashboard_screen.dart';
+import 'package:campmart/features/dashboard/presentation/view/dashboard_view.dart';
+
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final homeViewNavigatorProvider = Provider((ref) => HomeNavigator());
+final dashboardViewNavigatorProvider =
+    Provider<DashboardViewNavigator>((ref) => DashboardViewNavigator());
 
-class HomeNavigator {}
+class DashboardViewNavigator {}
 
-mixin HomeViewRoute {
-  openDashboardView() {
-    NavigateRoute.pushRoute(DashboardScreen());
+mixin DashboardViewRoute {
+  void openDashboardView() {
+    NavigateRoute.pushRoute(const DashboardView());
   }
 }

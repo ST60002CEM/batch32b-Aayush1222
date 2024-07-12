@@ -5,19 +5,18 @@ import 'package:campmart/features/dashboard/data/dto/dashboard_dto.dart';
 import 'package:campmart/features/dashboard/domain/entity/dashboard_entity.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+ 
 final dashboardRemoteDataSourceProvider =
     Provider<DashboardRemoteDataSource>((ref) {
   final dio = ref.read(httpServiceProvider);
   return DashboardRemoteDataSource(dio);
 });
-
+ 
 class DashboardRemoteDataSource {
   final Dio _dio;
   DashboardRemoteDataSource(this._dio);
-
+ 
   Future<Either<PostFailure, List<DashboardEntity>>> getAllPosts(
       int page) async {
     try {
@@ -28,7 +27,7 @@ class DashboardRemoteDataSource {
           '_limit': ApiEndpoints.limitPage,
         },
       );
-
+ 
       if (response.statusCode == 201) {
         final getAllPostDto = DashboardDto.fromJson(response.data);
         final posts = getAllPostDto.data.map((e) => e.toEntity()).toList();
