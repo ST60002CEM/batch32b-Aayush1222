@@ -1,6 +1,7 @@
 import 'package:campmart/features/auth/presentation/viewmodel/auth_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:campmart/features/auth/presentation/view/register_view.dart';
 
 class LoginView extends ConsumerStatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -158,9 +159,10 @@ class _LoginViewState extends ConsumerState<LoginView> {
                     ElevatedButton(
                       key: const ValueKey('signUpButton'),
                       onPressed: () {
-                        ref
-                            .read(authViewModelProvider.notifier)
-                            .openRegisterView();
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => const RegisterView()),
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color.fromARGB(255, 44, 44, 61),
