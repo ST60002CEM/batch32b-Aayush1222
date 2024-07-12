@@ -1,5 +1,5 @@
 
-import 'package:campmart/features/dashboard/data/data_source/remote/dashboard_remote_datasource.dart';
+import 'package:campmart/features/dashboard/data/data_source/dashboard_remote_data_source.dart';
 import 'package:campmart/features/dashboard/presentation/navigator/dashboard_navigator.dart';
 import 'package:campmart/features/dashboard/presentation/state/dashboard_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
