@@ -105,4 +105,14 @@ void main() {
       // Assert
       expect(authState.error, isNull);
     });
-    
+    test("register with existing email", () async {
+      const existingMail = "test@gmail.com";
+      // Arrange
+      when(mockAuthUsecase.registerStudent(any)).thenAnswer((invocation) {
+        final AuthEntity user = invocation.positionalArguments[0] as AuthEntity;
+        return Future.value(user.email == existingMail
+            ? Left(Failure(error: 'Email already exists'))
+            : const Right(true));
+      });
+      // Act
+  
