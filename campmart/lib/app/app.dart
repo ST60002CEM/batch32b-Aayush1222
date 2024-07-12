@@ -1,5 +1,4 @@
 import 'package:campmart/features/auth/presentation/view/register_view.dart';
-import 'package:campmart/features/dashboard/presentation/view/dashboard_view.dart';
 
 import '../features/splash/presentation/view/splash_view.dart';
 import '../screen/login_screen.dart';
@@ -19,7 +18,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Campmart',
       theme: AppTheme.getApplicationTheme(false),
-      home: const DashboardView (),
+      home: const SplashView(),
     );
   }
 }
