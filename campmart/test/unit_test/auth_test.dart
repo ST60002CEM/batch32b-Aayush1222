@@ -115,4 +115,22 @@ void main() {
             : const Right(true));
       });
       // Act
-  
+      const AuthEntity user = AuthEntity(
+          name: "test",
+          username: "test",
+          email: "test@gmail.com",
+          password: "test");
+      await container
+          .read(authViewModelProvider.notifier)
+          .registerStudent(user);
+      final authState = container.read(authViewModelProvider);
+
+      // Assert
+      expect(authState.error, isNull);
+    });
+  });
+
+  tearDown(() {
+    container.dispose();
+  });
+}
