@@ -30,7 +30,24 @@ class _HomeViewState extends ConsumerState<HomeView> {
     super.dispose();
   }
 
- 
+  void _scrollListener() {
+    if (_scrollController.position.extentAfter < 500 && !isLoading) {
+      setState(() {
+        isLoading = true;
+      });
+      _loadMorePosts();
+    }
+  }
+
+  Future<void> _loadMorePosts() async {
+    await ref
+        .read(dashboardViewModelProvider.notifier)
+        .getPosts(page: currentPage);
+    setState(() {
+      isLoading = false;
+      currentPage++;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
