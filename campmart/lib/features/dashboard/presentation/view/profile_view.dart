@@ -1,10 +1,10 @@
 import 'package:campmart/features/auth/presentation/view/login_view.dart';
-import 'package:campmart/features/dashboard/presentation/view/setting_screen.dart';
-import 'package:campmart/screen/setting_screen.dart';
+import 'package:campmart/features/dashboard/presentation/view/setting_view.dart';
+import 'package:campmart/features/dashboard/presentation/view/setting_view.dart';
 import 'package:flutter/material.dart';
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+class ProfileView extends StatelessWidget {
+  const ProfileView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +27,10 @@ class ProfileScreen extends StatelessWidget {
             title: const Text('My orders'),
             trailing: const Icon(Icons.chevron_right),
             onTap: () {
-              // Navigate to My Orders screen
+              // Navigate to My Orders view
               // Navigator.push(
               //   context,
-              //   MaterialPageRoute(builder: (context) => MyOrdersScreen()),
+              //   MaterialPageRoute(builder: (context) => MyOrdersView()),
               // );
             },
           ),
@@ -39,10 +39,10 @@ class ProfileScreen extends StatelessWidget {
             title: const Text('Shipping addresses'),
             trailing: const Icon(Icons.chevron_right),
             onTap: () {
-              // Navigate to Shipping Addresses screen
+              // Navigate to Shipping Addresses view
               // Navigator.push(
               //   context,
-              //   MaterialPageRoute(builder: (context) => ShippingAddressesScreen()),
+              //   MaterialPageRoute(builder: (context) => ShippingAddressesView()),
               // );
             },
           ),
@@ -51,10 +51,10 @@ class ProfileScreen extends StatelessWidget {
             title: const Text('Payment methods'),
             trailing: const Icon(Icons.chevron_right),
             onTap: () {
-              // Navigate to Payment Methods screen
+              // Navigate to Payment Methods view
               // Navigator.push(
               //   context,
-              //   MaterialPageRoute(builder: (context) => PaymentMethodsScreen()),
+              //   MaterialPageRoute(builder: (context) => PaymentMethodsView()),
               // );
             },
           ),
@@ -63,10 +63,10 @@ class ProfileScreen extends StatelessWidget {
             title: const Text('Promocodes'),
             trailing: const Text('You have no applied promocodes'),
             onTap: () {
-              // Navigate to Promocodes screen
+              // Navigate to Promocodes view
               // Navigator.push(
               //   context,
-              //   MaterialPageRoute(builder: (context) => PromocodesScreen()),
+              //   MaterialPageRoute(builder: (context) => PromocodesView()),
               // );
             },
           ),
@@ -75,10 +75,10 @@ class ProfileScreen extends StatelessWidget {
             title: const Text('My reviews'),
             trailing: const Text('Reviews for 4 items'),
             onTap: () {
-              // Navigate to My Reviews screen
+              // Navigate to My Reviews view
               // Navigator.push(
               //   context,
-              //   MaterialPageRoute(builder: (context) => MyReviewsScreen()),
+              //   MaterialPageRoute(builder: (context) => MyReviewsView()),
               // );
             },
           ),
@@ -87,10 +87,10 @@ class ProfileScreen extends StatelessWidget {
             title: const Text('Settings'),
             trailing: const Icon(Icons.chevron_right),
             onTap: () {
-              // Navigate to Settings screen
+              // Navigate to Settings view
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const SettingsScreen()),
+                MaterialPageRoute(builder: (context) => const SettingsView()),
               );
             },
           ),
@@ -114,7 +114,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          // Logout and navigate to login screen
+                          // Logout and navigate to login view
                           Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
