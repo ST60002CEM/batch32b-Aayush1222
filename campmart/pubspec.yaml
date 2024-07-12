@@ -49,6 +49,8 @@ dependencies:
   permission_handler: ^11.3.1
   hive_flutter: ^1.1.0
   connectivity_plus: ^4.0.1
+  mockito: ^5.4.4
+  all_sensors: ^0.4.2
 
 dev_dependencies:
   flutter_test:
